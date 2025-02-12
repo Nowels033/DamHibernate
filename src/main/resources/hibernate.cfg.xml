@@ -18,5 +18,7 @@
         <property name="hibernate.hbm2ddl.auto">update</property>
 
         <mapping class="hibernate.modelos.Students"/>
+       <mapping class="hibernate.modelos.Address"/>
+        <mapping class="hibernate.modelos.User"/>
     </session-factory>
 </hibernate-configuration>

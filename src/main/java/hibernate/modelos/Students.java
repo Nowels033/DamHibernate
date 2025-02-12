@@ -17,7 +17,7 @@ public class Students {
     public Students() {
     }
 
-    public Students(Long id, String name, String email, float averageMark) {
+    public Students(  String name, String email, float averageMark) {
         this.id = id;
         this.name = name;
         this.email = email;
