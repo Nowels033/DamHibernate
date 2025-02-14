@@ -20,5 +20,8 @@
         <mapping class="hibernate.modelos.Students"/>
        <mapping class="hibernate.modelos.Address"/>
         <mapping class="hibernate.modelos.User"/>
+        <mapping class="hibernate.modelos.Cart"/>
+        <mapping class="hibernate.modelos.Item"/>
+
     </session-factory>
 </hibernate-configuration>

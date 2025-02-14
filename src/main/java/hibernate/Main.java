@@ -1,19 +1,25 @@
 package hibernate;
 
+import hibernate.daos.CartDAO;
+import hibernate.daos.ItemDAO;
 import hibernate.daos.StudentsDAO;
 
 import hibernate.daos.UserDAO;
-import hibernate.modelos.Address;
-import hibernate.modelos.Students;
-import hibernate.modelos.User;
+import hibernate.modelos.*;
 import hibernate.utils.HibernateUtil;
 
 import java.util.List;
+import java.util.Set;
 
 public class Main {
     public static void main(String[] args) {
 //        students();
-users();
+//users();
+
+//        carts();
+//        items();
+
+        carritos();
     }
     public static void students() {
         StudentsDAO studentDAO = new StudentsDAO();
@@ -97,4 +103,116 @@ users();
         // Shut down the SessionFactory
         HibernateUtil.shutdown();
     }
+
+    public static void carts() {
+        CartDAO studentDAO = new CartDAO();
+
+        // Create new cart
+        Cart cart = new Cart();
+        cart.setName("CART 1");
+        studentDAO.saveCart(cart);
+
+        // Update cart
+        cart.setName("CART 2");
+        studentDAO.updateCart(cart);
+
+        // Get cart by ID
+        Cart retrievedCart = studentDAO.getCartById(cart.getId());
+        System.out.println("Retrieved Cart: " + retrievedCart.getName());
+
+        // Get all carts
+        List<Cart> carts = studentDAO.getAllCart();
+        System.out.println("All Carts:");
+        carts.forEach(cart1 -> System.out.println(cart1.getName()));
+
+        // Delete cart
+        studentDAO.deleteCart(cart.getId());
+
+        // Get all carts after deletion
+        carts = studentDAO.getAllCart();
+        System.out.println("All Carts after deletion:");
+        carts.forEach(cart1 -> System.out.println(cart1.getName()));
+
+        // Shut down the SessionFactory
+        HibernateUtil.shutdown();
+    }
+    public static void items() {
+        ItemDAO studentDAO = new ItemDAO();
+
+        // Create new item
+        Item cart = new Item();
+        cart.setName("CART 1");
+        studentDAO.saveItem(cart);
+
+        // Update item
+        cart.setName("CART 2");
+        studentDAO.updateItem(cart);
+
+        // Get item by ID
+        Item retrievedItem = studentDAO.getItemById(cart.getId());
+        System.out.println("Retrieved Item: " + retrievedItem.getName());
+
+        // Get all items
+        List<Item> items = studentDAO.getItems();
+        System.out.println("All Items:");
+        items.forEach(item1 -> System.out.println(item1.getName()));
+
+        // Delete item
+        studentDAO.deleteItem(cart.getId());
+
+        // Get all items after deletion
+        items = studentDAO.getItems();
+        System.out.println("All Items after deletion:");
+        items.forEach(item1 -> System.out.println(item1.getName()));
+
+        // Shut down the SessionFactory
+        HibernateUtil.shutdown();
+
+    }
+
+    public static void carritos(){
+
+        ItemDAO itemDAO = new ItemDAO();
+        CartDAO cartDAO = new CartDAO();
+
+        Item item1 = new Item();
+        item1.setName("pelota");
+        Item item2 = new Item();
+        item2.setName("canasta");
+        Item item3 = new Item();
+        item3.setName("mancuernas");
+        Item item4 = new Item();
+        item4.setName("gafas");
+
+        Set<Item> items = new java.util.HashSet<>();
+        items.add(item1);
+        items.add(item2);
+        items.add(item3);
+        items.add(item4);
+
+        Cart cart = new Cart();
+        cart.setName("CARRITO 1");
+        cart.setItems(items);
+
+
+        Cart cart2 = new Cart();
+        cart2.setName("Carrito 2");
+        cart2.setItems(items);
+
+
+        cartDAO.saveCart(cart);
+        cartDAO.saveCart(cart2);
+
+        itemDAO.getItems();
+
+        cartDAO.getAllCart();
+
+
+        HibernateUtil.shutdown();
+
+
+
+    }
+
+
 }
