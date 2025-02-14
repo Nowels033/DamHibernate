@@ -207,7 +207,7 @@ public class Main {
 
         List<Cart> carritos =cartDAO.getAllCart();
 
-// PRUEBAS
+        // PRUEBAS
         for (int i = 0; i < carritos.size() ; i++) {
 
             System.out.println(carritos.get(i).getName());
